@@ -2,6 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Queue;
+import java.util.Deque;
+import java.util.LinkedList;
+
 class makeCalc extends JFrame implements ActionListener
 {
     String[] str= {"C","<","%","/","7","8","9","*","4","5","6","-","1","2","3","+","^","0",".","="};
@@ -9,6 +13,8 @@ class makeCalc extends JFrame implements ActionListener
     JTextField jtxt1,jtxt2;
     double n,m,result;
     char op;
+    Deque<String> Q= new LinkedList<>();
+    int flag=0;
 
     public makeCalc()
     {
@@ -56,104 +62,88 @@ class makeCalc extends JFrame implements ActionListener
         System.out.println(txt);
         try {
             if (txt == "C") {
+                flag=0;
                 jtxt1.setText(null);
                 jtxt2.setText(null);
-            }
-            else if(txt == "<"){
-                if(jtxt2.getText()!=null) {
-                    jtxt1.setText(jtxt1.getText().substring(0, jtxt1.getText().length() - 1));
-                    jtxt2.setText(jtxt2.getText().substring(0, jtxt2.getText().length() - 1));
+                while (Q != null) {
+                    Q.remove();
                 }
-                else{
-                    jtxt1.setText(null);
+            }
+            else if (txt == "<") {
+                    jtxt1.setText(jtxt1.getText().substring(0, jtxt1.getText().length() - 1));
+                    if (flag == 0)
+                        jtxt2.setText(jtxt2.getText().substring(0, jtxt2.getText().length() - 1));
+                  //  Q.removeLast();
+
+            } else if (txt == "=") {
+                Q.add(jtxt2.getText()); //Adding Last operand tp the Queue
+                                                                                    System.out.println("Queue "+Q);
+                if (Q.size() < 3) {
+                    System.out.println("Enter 2 operands and and operation");
+                    return;
+                }
+                String item1 = Q.remove();
+                result = Double.parseDouble(item1);
+                while (Q.size() != 0) {
+
+                    if (item1 == "%" || item1 == "/" || item1 == "*" || item1 == "-" || item1 == "+") {
+                        if (item1 == "%") {
+                            Double item2 = Double.parseDouble(Q.remove());
+                            result %= item2;
+                        } else if (item1 == "/") {
+                            Double item2 = Double.parseDouble(Q.remove());
+                            result /= item2;
+                        } else if (item1 == "*") {
+                            Double item2 = Double.parseDouble(Q.remove());
+                            result *= item2;
+                            if (Q.size() == 0) {
+
+                                jtxt2.setText(result + "");
+                                System.out.println(result);
+                            }
+
+                        } else if (item1 == "-") {
+                            Double item2 = Double.parseDouble(Q.remove());
+                            result -= item2;
+                        } else if (item1 == "+") {
+                            Double item2 = Double.parseDouble(Q.remove());
+                            result += item2;
+                        }
+                    }
+
+                    if (Q.size() == 0) {
+                        jtxt2.setText(result + "");
+                        System.out.println(result);
+                        flag = 1;
+                    }
+                    item1 = Q.remove();
+
+                }
+
+            } else {
+                int flag2=0;
+                if (txt == "%" || txt == "/" || txt == "*" || txt == "-" || txt == "+") {
+                    Q.add(jtxt2.getText());
+                    Q.add(b1.getText());
+                    flag2=1;
+                }
+                jtxt1.setText(jtxt1.getText() + txt);
+                jtxt2.setText(jtxt2.getText() + txt);
+                if(flag2==1){
                     jtxt2.setText(null);
                 }
-            }
-            else if(txt == "%"){
-                n=Double.parseDouble(jtxt2.getText());
-                jtxt1.setText(jtxt2.getText()+"%");
-                jtxt2.setText(null);
-                op='%';
-            }
-            else if(txt == "/"){
-                n=Double.parseDouble(jtxt2.getText());
-                jtxt1.setText(jtxt2.getText()+"/");
-                jtxt2.setText(null);
-                op='/';
-            }
-            else if(txt == "*"){
-                n=Double.parseDouble(jtxt2.getText());
-                jtxt1.setText(jtxt2.getText()+"*");
-                jtxt2.setText(null);
-                op='*';
-            }
-            else if(txt == "-"){
-                n=Double.parseDouble(jtxt2.getText());
-                jtxt1.setText(jtxt2.getText()+"-");
-                jtxt2.setText(null);
-                op='-';
-            }
-            else if(txt == "+"){
-                n=Double.parseDouble(jtxt2.getText());
-                jtxt1.setText(jtxt2.getText()+"+");
-                jtxt2.setText(null);
-                op='+';
-            }
-            else if(txt == "^"){
-                n=Double.parseDouble(jtxt2.getText());
-                jtxt1.setText(jtxt1.getText()+"^");
-                jtxt2.setText(null);
-                op='^';
-            }
-            else if(txt == "="){
-                try {
-                    if (op == '%') {
-                        m = Double.parseDouble(jtxt2.getText());
-                        result = n % m;
-                        jtxt2.setText("" + result);
-                    } else if (op == '/') {
-                        m = Double.parseDouble(jtxt2.getText());
-                        result = n / m;
-                        jtxt2.setText("" + result);
-                    } else if (op == '*') {
-                        m = Double.parseDouble(jtxt2.getText());
-                        result = n * m;
-                        jtxt2.setText("" + result);
-                    } else if (op == '-') {
-                        m = Double.parseDouble(jtxt2.getText());
-                        result = n - m;
-                        jtxt2.setText("" + result);
-                    } else if (op == '+') {
-                        m = Double.parseDouble(jtxt2.getText());
-                        result = n + m;
-                        jtxt2.setText("" + result);
-                    } else if (op == '^') {
-                        m = Double.parseDouble(jtxt2.getText());
-                        result = Math.pow(n, m);
-                        jtxt2.setText("" + result);
-                    }
-                    System.out.println(n+" "+op+" "+ m+"= "+result);
-                }
-                catch(Exception e3) {
-                    System.out.println("Enter Operand 2");
-                }
-            }
-            else{
-                jtxt2.setText(jtxt2.getText()+txt);
-                jtxt1.setText(jtxt1.getText()+txt);
             }
         }
         catch(Exception ex)
         {
-            ex.printStackTrace();
+            //ex.printStackTrace();
         }
-
+        System.out.println("QUEUE "+Q);
     }
 }
-public class Calculator
+public class Calculator_NS
 {
     public static void main(String[] args) {
         makeCalc c =new makeCalc();
-
     }
 }
