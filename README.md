@@ -1,2 +1,2 @@
 ## Calculator
-Simple Calculator Made Using Java Swing Package
+Calculator Made Using Java Swing Package
