@@ -86,7 +86,7 @@ class makeCalc extends JFrame implements ActionListener
                 result = Double.parseDouble(item1);
                 while (Q.size() != 0) {
 
-                    if (item1 == "%" || item1 == "/" || item1 == "*" || item1 == "-" || item1 == "+") {
+                    if (item1 == "%" || item1 == "/" || item1 == "*" || item1 == "-" || item1 == "+"|| item1=="^") {
                         if (item1 == "%") {
                             Double item2 = Double.parseDouble(Q.remove());
                             result %= item2;
@@ -96,18 +96,15 @@ class makeCalc extends JFrame implements ActionListener
                         } else if (item1 == "*") {
                             Double item2 = Double.parseDouble(Q.remove());
                             result *= item2;
-                            if (Q.size() == 0) {
-
-                                jtxt2.setText(result + "");
-                                System.out.println(result);
-                            }
-
                         } else if (item1 == "-") {
                             Double item2 = Double.parseDouble(Q.remove());
                             result -= item2;
                         } else if (item1 == "+") {
                             Double item2 = Double.parseDouble(Q.remove());
                             result += item2;
+                        }else if (item1 == "^") {
+                            Double item2 = Double.parseDouble(Q.remove());
+                            result = Math.pow(result,item2);
                         }
                     }
 
@@ -122,7 +119,7 @@ class makeCalc extends JFrame implements ActionListener
 
             } else {
                 int flag2=0;
-                if (txt == "%" || txt == "/" || txt == "*" || txt == "-" || txt == "+") {
+                if (txt == "%" || txt == "/" || txt == "*" || txt == "-" || txt == "+"|| txt == "^") {
                     Q.add(jtxt2.getText());
                     Q.add(b1.getText());
                     flag2=1;
