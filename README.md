@@ -1,4 +1,2 @@
-# Calculator
-CALCULATOR USING JAVA
-
-Simple Calculator Made Using Jav Swing
+## Calculator
+Simple Calculator Made Using Java Swing Package
