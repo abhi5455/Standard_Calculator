@@ -70,14 +70,17 @@ class makeCalc extends JFrame implements ActionListener
                 }
             }
             else if (txt == "<") {
+                if (flag == 0) {
+                    jtxt2.setText(jtxt2.getText().substring(0, jtxt2.getText().length() - 1));
                     jtxt1.setText(jtxt1.getText().substring(0, jtxt1.getText().length() - 1));
-                    if (flag == 0)
-                        jtxt2.setText(jtxt2.getText().substring(0, jtxt2.getText().length() - 1));
-                  //  Q.removeLast();
+                }
+                else
+                    System.out.println("CLEAR THE SCREEN");
+                //  Q.removeLast();
 
             } else if (txt == "=") {
                 Q.add(jtxt2.getText()); //Adding Last operand tp the Queue
-                                                                                    System.out.println("Queue "+Q);
+                System.out.println("Queue "+Q);
                 if (Q.size() < 3) {
                     System.out.println("Enter 2 operands and and operation");
                     return;
