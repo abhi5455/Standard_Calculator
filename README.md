@@ -10,9 +10,10 @@
    - String array str containing the calculator button labels.
    - JButton array b for calculator buttons.
    - JTextField instances jtxt1 and jtxt2 for displaying input and result.
-   - double variables n, m, result for numeric calculations.
-   - char variable op for storing the operator.
+   - double variable 'result' for numeric calculations.
    - Deque<String> Q to store operands and operators. (Creating a DoubleEnded Queue)
+   - Set<String> operators = new HashSet<>(Arrays.asList("%", "/", "*", "-", "+", "^"))
+                  (Creates a HashSet having all operators. This can be used to compare operators by the function operators.contains(op) .)
    - int flag for tracking state.
 
 3. Create a constructor makeCalc():
