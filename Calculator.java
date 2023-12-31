@@ -124,19 +124,32 @@ class makeCalc extends JFrame implements ActionListener
             } else {
                 int flag2=0;
                 if (txt == "%" || txt == "/" || txt == "*" || txt == "-" || txt == "+"|| txt == "^") {
+                    //This Loop Activates when and Operator is Clicked
+                    
+                    if(Q.peekLast() == "%" || Q.peekLast() == "/" || Q.peekLast() == "*" || Q.peekLast() == "-" || Q.peekLast() == "+"|| Q.peekLast() == "^"){
+                        //This Loop will not allow 2 operators to occur simultaneously.
+                        Q.removeLast();
+                        Q.add(b1.getText());
+                        jtxt1.setText((jtxt1.getText().substring(0,jtxt1.getText().length()-1) + txt));
+                        return;
+                    }
+
+                    //To add the previous number and operator to the Queue.
                     Q.add(jtxt2.getText());
                     Q.add(b1.getText());
                     flag2=1;
                 }
+
+                //To set the 2 Textfields Correspondingly when Number Buttons are pressed
                 jtxt1.setText(jtxt1.getText() + txt);
                 jtxt2.setText(jtxt2.getText() + txt);
                 if(flag2==1){
+                    // Clears the 2nd TextField when an operator is Encountered.
                     jtxt2.setText(null);
                 }
             }
         }
-        catch(Exception ex)
-        {
+        catch(Exception ex) {
             //ex.printStackTrace();
         }
         System.out.println("QUEUE "+Q);
