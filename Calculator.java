@@ -17,7 +17,7 @@ class makeCalc extends JFrame implements ActionListener
     int flag=0;
     Set<String> operators = new HashSet<>(Arrays.asList("%", "/", "*", "-", "+", "^"));
     /* Creates a HashSet having all operators. 
-       This can be used to compare operators by the function [ operators.contains(op) ]. */
+       This can be used to compare operators by the function operators.contains(op). */
 
 
     public makeCalc()
@@ -64,7 +64,7 @@ class makeCalc extends JFrame implements ActionListener
     {
         JButton b1=(JButton)e.getSource();
         String txt= b1.getText();
-        System.out.println(txt);
+        System.out.print(txt);
         try {
             if (txt.equals("C")) {
                 flag=0;
@@ -84,16 +84,25 @@ class makeCalc extends JFrame implements ActionListener
                 //  Q.removeLast();
 
             }
-            else if (txt.equals("=")) {
-                //This Loop activates when '=' is pressed.
+            else if (txt.equals("=")&& !jtxt2.getText().isEmpty()&&Q.size()>=2) {
+                /* This Loop activates when '=' is pressed && Last Element is an Operand
+                   &&b There is minimum 2 elements in the Queue (1 operand and an operator, the last operand to the 
+                                                                   Queue is added in this loop )*/
+
+               /*  if(! jtxt2.getText().isEmpty()){
+                    //ENSURES WHETHER LAST ELEMENT IS AN OPERAND OR NOT.
+                    System.out.println("Enter Last operand");
+                    return;
+                }*/
+                
 
                 Q.add(jtxt2.getText());     //Adding Last operand to the Queue.
 
-                System.out.println("Queue "+Q);
-                if (Q.size() < 3) {
+                System.out.println("\nQUEUE "+Q);
+                /*if (Q.size() < 3) {
                     System.out.println("Enter 2 operands and and operation");
                     return;
-                }
+                }*/
                 String item1 = Q.remove();
                 result = Double.parseDouble(item1);
                 while (Q.size() != 0) {
@@ -122,7 +131,7 @@ class makeCalc extends JFrame implements ActionListener
 
                     if (Q.size() == 0) {
                         jtxt2.setText(result + "");
-                        System.out.println(result);
+                        System.out.println("RESULT "+result);
                         flag = 1;
                     }
                     item1 = Q.remove();
@@ -130,7 +139,8 @@ class makeCalc extends JFrame implements ActionListener
                 }
 
             }
-            else {
+            else if(b1.getText()!="=") {
+
                 int flag2=0;
                 if (operators.contains(txt)) {
                     //This Loop Activates when an Operator is Clicked
@@ -156,16 +166,17 @@ class makeCalc extends JFrame implements ActionListener
                 if(flag2==1){
                     // Clears the 2nd TextField when an operator is Encountered.
                     jtxt2.setText(null);
+                    System.out.println("\nQUEUE "+Q);
+                    
                 }
             }
         }
         catch(Exception ex) {
             //ex.printStackTrace();
         }
-        System.out.println("QUEUE "+Q);
     }
 }
-public class Calculator_NS
+public class Calculator
 {
     public static void main(String[] args) {
         makeCalc c =new makeCalc();
