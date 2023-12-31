@@ -15,7 +15,7 @@
    - Set<String> operators = new HashSet<>(Arrays.asList("%", "/", "*", "-", "+", "^"))
                   (Creates a HashSet having all operators. This can be used to compare operators by the function operators.contains(op) .)
    - int flag for tracking state.
-
+     
 3. Create a constructor makeCalc():
    a. Set up the JFrame with appropriate properties.
    b. Initialize and configure the JTextFields jtxt1 and jtxt2.
