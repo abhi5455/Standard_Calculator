@@ -140,7 +140,7 @@ class makeCalc extends JFrame implements ActionListener
                     flag2=1;
                 }
 
-                //To set the 2 Textfields Correspondingly when Number Buttons are pressed
+                //To set the 2 Textfields Correspondingly when Buttons are pressed
                 jtxt1.setText(jtxt1.getText() + txt);
                 jtxt2.setText(jtxt2.getText() + txt);
                 if(flag2==1){
