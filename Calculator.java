@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Queue;
+import java.util.*;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -15,6 +15,10 @@ class makeCalc extends JFrame implements ActionListener
     char op;
     Deque<String> Q= new LinkedList<>();
     int flag=0;
+    Set<String> operators = new HashSet<>(Arrays.asList("%", "/", "*", "-", "+", "^"));
+    /* Creates a HashSet having all operators. 
+       This can be used to compare operators by the function operators.contains(op). */
+
 
     public makeCalc()
     {
@@ -62,7 +66,7 @@ class makeCalc extends JFrame implements ActionListener
         String txt= b1.getText();
         System.out.println(txt);
         try {
-            if (txt == "C") {
+            if (txt.equals("C")) {
                 flag=0;
                 jtxt1.setText(null);
                 jtxt2.setText(null);
@@ -70,7 +74,7 @@ class makeCalc extends JFrame implements ActionListener
                     Q.remove();
                 }
             }
-            else if (txt == "<") {
+            else if (txt.equals("<")) {
                 if (flag == 0) {
                     jtxt2.setText(jtxt2.getText().substring(0, jtxt2.getText().length() - 1));
                     jtxt1.setText(jtxt1.getText().substring(0, jtxt1.getText().length() - 1));
@@ -79,8 +83,12 @@ class makeCalc extends JFrame implements ActionListener
                     System.out.println("CLEAR THE SCREEN");
                 //  Q.removeLast();
 
-            } else if (txt == "=") {
-                Q.add(jtxt2.getText()); //Adding Last operand tp the Queue
+            }
+            else if (txt.equals("=")) {
+                //This Loop activates when '=' is pressed.
+
+                Q.add(jtxt2.getText());     //Adding Last operand to the Queue.
+
                 System.out.println("Queue "+Q);
                 if (Q.size() < 3) {
                     System.out.println("Enter 2 operands and and operation");
@@ -90,7 +98,7 @@ class makeCalc extends JFrame implements ActionListener
                 result = Double.parseDouble(item1);
                 while (Q.size() != 0) {
 
-                    if (item1 == "%" || item1 == "/" || item1 == "*" || item1 == "-" || item1 == "+"|| item1=="^") {
+                    if (operators.contains(item1)) {
                         if (item1 == "%") {
                             Double item2 = Double.parseDouble(Q.remove());
                             result %= item2;
@@ -121,22 +129,24 @@ class makeCalc extends JFrame implements ActionListener
 
                 }
 
-            } else {
+            }
+            else {
                 int flag2=0;
-                if (txt == "%" || txt == "/" || txt == "*" || txt == "-" || txt == "+"|| txt == "^") {
-                    //This Loop Activates when and Operator is Clicked
-                    
-                    if(Q.peekLast() == "%" || Q.peekLast() == "/" || Q.peekLast() == "*" || Q.peekLast() == "-" || Q.peekLast() == "+"|| Q.peekLast() == "^"){
+                if (operators.contains(txt)) {
+                    //This Loop Activates when an Operator is Clicked
+
+                    //temp stores the last character of String jtxt1
+                    String temp=jtxt1.getText().substring(jtxt1.getText().length()-1,jtxt1.getText().length());
+
+                    if(operators.contains(temp)) {
                         //This Loop will not allow 2 operators to occur simultaneously.
                         Q.removeLast();
                         Q.add(b1.getText());
                         jtxt1.setText((jtxt1.getText().substring(0,jtxt1.getText().length()-1) + txt));
                         return;
                     }
-
-                    //To add the previous number and operator to the Queue.
-                    Q.add(jtxt2.getText());
-                    Q.add(b1.getText());
+                    Q.add(jtxt2.getText());     //To add the previous number to the Queue.
+                    Q.add(b1.getText());    //To add the previous operator to the Queue.
                     flag2=1;
                 }
 
