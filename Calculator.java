@@ -11,8 +11,6 @@ class makeCalc extends JFrame implements ActionListener
     String[] str= {"C","<","%","/","7","8","9","*","4","5","6","-","1","2","3","+","^","0",".","="};
     JButton b[];
     JTextField jtxt1,jtxt2;
-    double n,m,result;
-    char op;
     Deque<String> Q= new LinkedList<>();
     int flag=0;
     Set<String> operators = new HashSet<>(Arrays.asList("%", "/", "*", "-", "+", "^"));
