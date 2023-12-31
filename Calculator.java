@@ -17,7 +17,7 @@ class makeCalc extends JFrame implements ActionListener
     int flag=0;
     Set<String> operators = new HashSet<>(Arrays.asList("%", "/", "*", "-", "+", "^"));
     /* Creates a HashSet having all operators. 
-       This can be used to compare operators by the function operators.contains(op). */
+       This can be used to compare operators by the function [ operators.contains(op) ]. */
 
 
     public makeCalc()
