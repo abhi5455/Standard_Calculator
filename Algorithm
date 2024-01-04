@@ -1,6 +1,6 @@
 CALCULATOR MADE USING JAVA SWING PACKAGE
 
-* Uses the Infix_to_Postfix Package for determining the operator precedence
+* Uses the Operator_Precedence Package for determining the operator precedence
 
 ALGORITHM:
 
