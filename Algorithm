@@ -1,0 +1,43 @@
+CALCULATOR MADE USING JAVA SWING PACKAGE
+
+* Uses the Infix_to_Postfix Package for determining the operator precedence
+
+ALGORITHM:
+
+1. Create a class named MakeCalc that extends JFrame and implements ActionListener.
+
+2. Declare instance variables:
+   - JTextField instances jtxt1 and jtxt2 for input and result display.
+   - JButton array b for calculator buttons.
+   - String array str containing button labels.
+   - Deque<String> Q for storing operands and operators.
+   - double variable result for calculation result.
+   - boolean flag to track state.
+
+3. Create a constructor MakeCalc:
+   a. Set up the JFrame with appropriate properties.
+   b. Initialize and configure JTextFields jtxt1 and jtxt2.
+   c. Create and configure calculator buttons, adding them to the JFrame.
+   d. Set the JFrame visible.
+
+4. Implement the actionPerformed(ActionEvent e) method:
+   a. Get the source button from the event.
+   b. Extract the text from the button.
+   c. Handle button actions based on the button text:
+      - If "CLEAR" is pressed, clear text fields and deque, reset the flag.
+      - If "<" is pressed, remove the last character from both text fields.
+      - If an operator or bracket button is pressed:
+         - Handle special cases for the first operator or bracket.
+         - Add operands and operators to the deque, update text fields accordingly.
+      - If "=" is pressed:
+         - Evaluate the expression stored in the deque using InfixtoPostfix's calculate method.
+         - Display the result in jtxt2 and update the deque.
+
+5. Implement functions:
+   a. isOperator(item): Check if an item is a mathematical operator.
+   b. isBracket(item): Check if an item is an opening or closing bracket.
+
+6. Create the main method:
+   a. Instantiate an object of the MakeCalc class.
+
+7. Run the program.
