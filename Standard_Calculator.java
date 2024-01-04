@@ -152,7 +152,6 @@ class MakeCalc extends JFrame implements ActionListener
 
                 if (flag2) {
                     jtxt2.setText(null);
-                    System.out.println("\nQUEUE " + Q);
                 }
             }
             /*else if (txt.equals("=")&& jtxt2.getText().isEmpty()&&Q.size()<=2){
