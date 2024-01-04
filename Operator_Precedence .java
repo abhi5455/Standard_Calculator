@@ -1,10 +1,10 @@
-package InfixtoPostfix;
+package OperatorPrecedence;
 
 import java.util.LinkedList;
 import java.util.Deque;
 import java.util.Stack;
 
-public class InfixtoPostfix {
+public class OperatorPrecedence {
 
     protected Deque<String> S= new LinkedList<>();
     protected Stack<Double> ES= new Stack<>();
@@ -12,7 +12,7 @@ public class InfixtoPostfix {
     protected Deque<String> Q= new LinkedList<>();
     double result;
     String optr;
-    
+
     public double calculate(Deque<String> Q){
         this.Q=Q;
         ConvertInfixtoPostfix();
