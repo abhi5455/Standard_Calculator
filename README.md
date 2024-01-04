@@ -2,11 +2,11 @@
 
 ## A Calculator Made Using Java Swing Package
 
-## 1-Standard_Calculator 
+## 1- Standard_Calculator 
 
 - Uses the Infix_to_Postfix Package for determining the operator precedence
 
-### Algorithm:
+### - Algorithm:
 
 1. Create a class makeCalc that extends JFrame and implements ActionListener.
 
