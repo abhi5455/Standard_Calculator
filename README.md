@@ -1,6 +1,6 @@
 # Calculator
 
-## A Calculator Made Using Java Swing Package
+## Calculator Made Using Java Swing Package
 
 ## 1. Standard_Calculator 
 
