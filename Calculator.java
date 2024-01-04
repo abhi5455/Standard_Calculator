@@ -23,7 +23,7 @@ class makeCalc extends JFrame implements ActionListener
     {
         this.setTitle("CALC");
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
-        this.setSize(425,675);
+        this.setSize(401,637);
         this.setResizable(false);
         this.setLayout(null);
 
@@ -31,30 +31,30 @@ class makeCalc extends JFrame implements ActionListener
         jtxt2=new JTextField();
         this.add(jtxt1);
         this.add(jtxt2);
-        jtxt1.setBounds(8,10,396,50);
+        jtxt1.setBounds(8,8,372,48);
         jtxt1.setDisabledTextColor(Color.red);
         jtxt1.setFont(new Font("Arial", Font.BOLD, 20));
         jtxt1.setHorizontalAlignment(SwingConstants.RIGHT);
         jtxt1.setForeground(Color.blue);
-        jtxt2.setBounds(8,60,396,75);
+        jtxt2.setBounds(8,57,372,67);
         jtxt2.setFont(new Font("Arial", Font.BOLD, 35));
         jtxt2.setHorizontalAlignment(SwingConstants.RIGHT);
 
 
-        int k=0,x=8,y=135;
+        int k=0,x=8,y=128;
         b = new JButton[20];
         for (int i = 0; i <5; i++) {
             for (int j = 0; j <4; j++) {
                 b[k] = new JButton();
                 b[k].setText(str[k]);
-                b[k].setBounds(x, y, 95, 95);
+                b[k].setBounds(x, y, 90, 90);
                 b[k].setFont(new Font("Arial", Font.BOLD, 28));
                 this.add(b[k]);
                 b[k++].addActionListener(this);
-                x += 100;
+                x += 94;
             }
             x=8;
-            y +=100;
+            y +=94;
         }
         b[0].setFont(new Font("Arial", Font.BOLD, 40));
         this.setVisible(true);
