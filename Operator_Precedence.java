@@ -17,7 +17,6 @@ public class OperatorPrecedence {
         this.Q=Q;
         ConvertInfixtoPostfix();
         System.out.println(evaluatePostfix());
-        System.out.println("STACK "+S);
         return result;
     }
     private double evaluatePostfix(){
