@@ -1,4 +1,4 @@
-import InfixtoPostfix.*;
+import OperatorPrecedence.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +15,7 @@ class MakeCalc extends JFrame implements ActionListener
     Deque<String> Q =new LinkedList<>();
     double result;
     boolean flag=false;
+    OperatorPrecedence OP = new OperatorPrecedence();
 
     public MakeCalc()
     {
@@ -121,7 +122,7 @@ class MakeCalc extends JFrame implements ActionListener
                     return;
                 }
                 else if (jtxt1.getText().isEmpty() && isOperator(txt)) {
-                    // Prevents 1 element as operator
+                    // Prevents 1st element as operator
                     return;
                 }
                 boolean flag2 = false;
@@ -135,9 +136,6 @@ class MakeCalc extends JFrame implements ActionListener
                         return;
                     }
                     if (!flag&&!txt.equals("(")) {
-                        /*if(jtxt2.getText().isEmpty()&&txt.equals("-")){
-
-                        }*/
                         Q.add(jtxt2.getText());
                     }
                     Q.add(txt);
@@ -157,6 +155,14 @@ class MakeCalc extends JFrame implements ActionListener
                     System.out.println("\nQUEUE " + Q);
                 }
             }
+            /*else if (txt.equals("=")&& jtxt2.getText().isEmpty()&&Q.size()<=2){
+                //THIS CONDITION HANDLES THE CASE OF 1 OPERAND AND 1 OPERATOR (eq: 5+ = 5)
+                Q.removeLast(); //REMOVES THE OPERATOR
+                jtxt1.setText(Q.peek());
+                jtxt2.setText(Q.peek());
+                Q.remove(); /* REMOVES THE OPERAND BECAUSE WHEN NEW OPERATOR IS CLICKED,
+                               THE OPERAND IS ADDED TO THE QUEUE ONCE AGAIN
+            }*/
             else if (txt.equals("=")) {
 
                 flag = true;
@@ -170,9 +176,8 @@ class MakeCalc extends JFrame implements ActionListener
                     // adds the last operand
                     Q.add(jtxt2.getText());
                 }
-                InfixtoPostfix I= new InfixtoPostfix();
                 System.out.println("\nQUEUE " + Q);
-                result=I.calculate(Q);
+                result= OP.calculate(Q);
                 System.out.println("\nRESULT "+result);
                 jtxt2.setText(Double.toString(result));
                 Q.add(Double.toString(result));
