@@ -12,5 +12,4 @@
 - Calculates the value withoud Operator precedence  (Uses left to right precedence).
 - Works without  ***Operator_Precedence***  Package.
 
- 
-![Standard_Calculator](https://github.com/abhi5455/Standard_Calculator/assets/118897422/2218ad6e-6b75-443d-8413-64535ab1a585)
+![Standard_Calculator (1)](https://github.com/abhi5455/Standard_Calculator/assets/118897422/f21bb58b-f16b-441c-ab68-2d52b9371fcb)
